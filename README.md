@@ -3,5 +3,5 @@
 Using C++
 
 
-## Sitea
+## Site
 - [BOJ](https://www.acmicpc.net/user/yw823x)
