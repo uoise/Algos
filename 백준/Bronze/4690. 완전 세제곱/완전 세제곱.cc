@@ -1,0 +1,2 @@
+#include <cstdio>
+int main() { int a, b, c, d; for (a = 2; a < 101; a++) for (b = 2; b < 101; b++) for (c = b + 1; c < 101; c++) for (d = c + 1; d < 101; d++) if (a * a * a == b * b * b + c * c * c + d * d * d) printf("Cube = %d, Triple = (%d,%d,%d)\n", a, b, c, d); }
