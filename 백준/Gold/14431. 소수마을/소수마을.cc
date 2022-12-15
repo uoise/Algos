@@ -23,9 +23,9 @@ void init() {
   pv[0] = {bx, by}, pv[n + 1] = {ex, ey};
   for (int i = 1; i <= n; i++) scanf("%d %d", &pv[i].x, &pv[i].y);
 
-  for (int i = 2; i <= siz * 2; i++)
+  for (int i = 2; i < siz * 2; i++)
     if (!pr[i])
-      for (int j = 2 * i; j <= siz * 2; j += i) pr[j] = 1;
+      for (int j = 2 * i; j < siz * 2; j += i) pr[j] = 1;
 
   for (int i = 0; i < n + 2; i++) {
     for (int j = i + 1; j < n + 2; j++) {
