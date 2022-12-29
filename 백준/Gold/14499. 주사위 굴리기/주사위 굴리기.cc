@@ -5,7 +5,6 @@ using namespace std;
 
 int n, m, x, y, k, o, vv[21][21], dv[6];
 void sol() {
-  int tmp;
   if (o == 1) {
     if (x + 1 >= m) return;
     swap(dv[0], dv[3]);
@@ -31,7 +30,7 @@ void sol() {
     swap(dv[5], dv[4]);
     ++y;
   }
-    
+
   if (!vv[y][x]) {
     vv[y][x] = dv[5];
   } else {
