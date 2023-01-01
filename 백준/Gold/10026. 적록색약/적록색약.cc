@@ -1,13 +1,12 @@
+#include <cstdio>
 #include <cstring>
-#include <iostream>
 #include <queue>
-#include <vector>
 
 using namespace std;
 
-vector<string> vv;
 queue<pair<int, int>> q;
 int xx[4] = {1, 0, -1, 0}, yy[4] = {0, 1, 0, -1};
+char vv[100][101];
 bool bv[100][100];
 int n, r, s;
 void bfs(int y, int x, int g = 0) {
@@ -34,10 +33,8 @@ void bfs(int y, int x, int g = 0) {
 }
 
 int main() {
-  cin.tie(0)->sync_with_stdio(0);
-  cin >> n;
-  vv.resize(n);
-  for (auto& s : vv) cin >> s;
+  scanf("%d", &n);
+  for (int i = 0; i < n; i++) scanf("%s", vv[i]);
   for (int i = 0; i < n; i++)
     for (int j = 0; j < n; j++)
       if (!bv[i][j]) bfs(i, j), ++r;
@@ -47,5 +44,5 @@ int main() {
   for (int i = 0; i < n; i++)
     for (int j = 0; j < n; j++)
       if (!bv[i][j]) bfs(i, j, 1), ++s;
-  cout << r << ' ' << s;
+  printf("%d %d", r, s);
 }
