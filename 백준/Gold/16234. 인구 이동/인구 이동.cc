@@ -1,58 +1,51 @@
 #include <algorithm>
 #include <cstdio>
-#include <queue>
+#include <cstring>
 
 using namespace std;
 
 constexpr int xx[] = {1, 0, -1, 0}, yy[] = {0, 1, 0, -1};
-int n, l, r, t = 1, vv[50][50], bv[50][50];
-queue<pair<int, int>> q, bq;
-bool bfs(int y, int x) {
-  int sum = vv[y][x];
-  bv[y][x] = t;
-  q.push({y, x});
-  bq.push({y, x});
-  while (!q.empty()) {
-    y = q.front().first, x = q.front().second;
-    q.pop();
-    for (int i = 0; i < 4; i++) {
-      int ny = y + yy[i], nx = x + xx[i];
-      if (ny < 0 || ny >= n || nx < 0 || nx >= n) continue;
-      if (bv[ny][nx] >= t) continue;
-      int dif = abs(vv[y][x] - vv[ny][nx]);
-      if (dif < l || dif > r) continue;
-      bv[ny][nx] = t, sum += vv[ny][nx];
-      bq.push({ny, nx});
-      q.push({ny, nx});
-    }
-  }
+pair<int, int> buf[2501];
+int vv[50][50], n, l, r, t, sum, cnt;
+bool bv[50][50];
+constexpr auto sz = sizeof bv;
 
-  if (bq.size() == 1) {
-    bq.pop();
-    return 0;
+void dfs(int y, int x) {
+  bv[y][x] = 1, sum += vv[y][x], buf[cnt++] = {y, x};
+  for (int i = 0; i < 4; i++) {
+    int ny = y + yy[i], nx = x + xx[i];
+    if (ny < 0 || ny >= n || nx < 0 || nx >= n) continue;
+    if (bv[ny][nx]) continue;
+    int df = abs(vv[y][x] - vv[ny][nx]);
+    if (df < l || df > r) continue;
+    dfs(ny, nx);
   }
-  
-  sum /= bq.size();
-  while (!bq.empty()) {
-    vv[bq.front().first][bq.front().second] = sum;
-    bq.pop();
-  }
-  return 1;
 }
 
 bool sol() {
-  int res = 0;
+  bool res = 0;
   for (int y = 0; y < n; y++)
     for (int x = 0; x < n; x++)
-      if (bv[y][x] < t)
-        if (bfs(y, x)) ++res;
-  return res ? 1 : 0;
+      if (!bv[y][x]) {
+        cnt = 0, sum = 0;
+        dfs(y, x);
+        if (cnt > 1) {
+          sum /= cnt;
+          for (int i = 0; i < cnt; i++) vv[buf[i].first][buf[i].second] = sum;
+          res = 1;
+        }
+      }
+  return res;
 }
 
 int main() {
   scanf("%d %d %d", &n, &l, &r);
   for (int i = 0; i < n; i++)
     for (int j = 0; j < n; j++) scanf("%d", &vv[i][j]);
-  while (sol()) ++t;
-  printf("%d", t - 1);
+
+  while (sol()) {
+    ++t;
+    memset(bv, 0, sz);
+  }
+  printf("%d", t);
 }
