@@ -6,7 +6,6 @@ using namespace std;
 
 unordered_set<int> v;
 queue<pair<int, int>> q;
-constexpr long long INF = 1e9 + 1;
 long long x, n;
 int a, b;
 int sol() {
@@ -16,7 +15,7 @@ int sol() {
     x = q.front().first, a = q.front().second + 1;
     q.pop();
     n = x * 2;
-    if (n > INF) continue;
+    if (n > b) continue;
     if (n == b)
       return a;
     else if (v.find(n) == v.end()) {
@@ -24,7 +23,7 @@ int sol() {
       v.insert(n);
     }
     n = x * 10 + 1;
-    if (n > INF) continue;
+    if (n > b) continue;
     if (n == b)
       return a;
     else if (v.find(n) == v.end()) {
