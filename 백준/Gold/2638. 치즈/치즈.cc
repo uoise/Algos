@@ -24,28 +24,7 @@ void chk() {
       }
     }
   }
-}
-
-void bfs(int y, int x) {
-  q.push({y, x});
-  bv[y][x] = 1;
-  while (!q.empty()) {
-    y = q.front().first, x = q.front().second, c = 0;
-    q.pop();
-    for (int i = 0; i < 4; i++) {
-      ny = y + yy[i], nx = x + xx[i];
-      if (ny < 0 || ny >= n || nx < 0 || nx >= m) continue;
-      if (vv[ny][nx] > 0) {
-        if (!bv[ny][nx] && vv[ny][nx] == 1) {
-          bv[ny][nx] = 1;
-          q.push({ny, nx});
-        }
-      } else if (vv[ny][nx] == -1) {
-        ++c;
-      }
-    }
-    if (c > 1) vv[y][x] = 2;
-  }
+  memset(bv, 0, sizeof bv);
 }
 
 int main() {
@@ -57,18 +36,23 @@ int main() {
     }
 
   while (s) {
-    chk();
     ++r;
+    chk();
     for (int i = 0; i < n; i++)
       for (int j = 0; j < m; j++) {
-        if (vv[i][j] == 1) bfs(i, j);
+        if (vv[i][j] != 1) continue;
+        c = 0;
+        for (int k = 0; k < 4; k++) {
+          ny = i + yy[k], nx = j + xx[k];
+          if (ny < 0 || ny >= n || nx < 0 || nx >= m) continue;
+          if (vv[ny][nx] == -1) ++c;
+        }
+        if (c > 1) vv[i][j] = 2;
       }
 
     for (int i = 0; i < n; i++)
       for (int j = 0; j < m; j++)
         if (vv[i][j] == 2) vv[i][j] = 0, --s;
-    memset(bv, 0, sizeof bv);
   }
-
   printf("%d", r);
 }
