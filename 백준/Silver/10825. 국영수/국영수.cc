@@ -6,14 +6,8 @@ struct nyks {
   string n;
   int k, y, s;
   bool operator<(const nyks& x) const {
-    if (k != x.k)
-      return k > x.k;
-    else if (y != x.y)
-      return y < x.y;
-    else if (s != x.s)
-      return s > x.s;
-    else
-      return n < x.n;
+    return k != x.k ? k > x.k
+                    : (y != x.y ? y < x.y : (s != x.s ? s > x.s : n < x.n));
   }
 };
 
