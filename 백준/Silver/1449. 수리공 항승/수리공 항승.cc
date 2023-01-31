@@ -1,5 +1,6 @@
 #include <cstdio>
-int n, l, v[1001], x, r;
+int n, l, x, r;
+bool v[1001];
 int main() {
   scanf("%d %d", &n, &l);
   for (int i = 0; i < n; i++) {
