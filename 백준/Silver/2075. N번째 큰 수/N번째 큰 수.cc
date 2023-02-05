@@ -1,16 +1,19 @@
-#include <cstdio>
+#include <iostream>
+#include <queue>
 
-int v[1500][1500], n, p[1500], r, ix, mx;
+using namespace std;
+
+priority_queue<int> q;
+int n, x, r, i, j;
 int main() {
-  scanf("%d", &n);
-  for (int i = n - 1; i >= 0; i--)
-    for (int j = 0; j < n; j++) scanf("%d", &v[i][j]);
-  r = n;
-  while (r--) {
-    mx = -2e9, ix = -1;
-    for (int i = 0; i < n; i++)
-      if ((p[i] < n) && (mx < v[p[i]][i])) mx = v[p[i]][i], ix = i;
-    ++p[ix];
-  }
-  printf("%d", mx);
+  cin.tie(0)->sync_with_stdio(0);
+  cout.tie(0);
+  cin >> n;
+  for (; i < n; i++)
+    for (j = 0; j < n; j++) {
+      cin >> r;
+      q.push(-r);
+      if (q.size() > n) q.pop();
+    }
+  cout << -q.top();
 }
