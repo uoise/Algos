@@ -1,6 +1,7 @@
 # Algos
 
-Using C++
+Using C++, C, 
+Learning Java
 
 
 ## Site
