@@ -1,10 +1,9 @@
 class Solution {
     public int solution(int a, int b, int n) {
-        int answer = 0, t;
+        int answer = 0;
         while(n >= a) {
-            t = n / a * b;
-            answer += t;
-            n = n % a + t;
+            answer += n / a * b;
+            n = n % a + n / a * b;
         }
         return answer;
     }
