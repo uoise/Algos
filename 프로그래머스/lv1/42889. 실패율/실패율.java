@@ -4,7 +4,6 @@ import java.util.Comparator;
 class Solution {
     public int[] solution(int N, int[] stages) {
         int[][] ar = new int[N + 1][3];
-        for (int[] v : ar) Arrays.fill(v, 0);
         for (int i = 0; i < ar.length; i++) {
             ar[i][0] = i;
             ar[0][1] = 0;
