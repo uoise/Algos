@@ -11,7 +11,7 @@ std::queue<zyx> q;
 int vvv[30][30][30];
 int TC, l, r, c, z, y, x, nz, ny, nx, v, res;
 void pre() {
-  q = std::queue<zyx>();
+  while (!q.empty()) q.pop();
   for (z = 0; z < l; z++)
     for (y = 0; y < r; y++)
       for (x = 0; x < c; x++)
