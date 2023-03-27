@@ -32,5 +32,5 @@ int main() {
   dv[b] = 0;
   pq.push({-dv[b], b});
   sol();
-  printf("%lld", dv[e]);
+  printf("%d", dv[e]);
 }
