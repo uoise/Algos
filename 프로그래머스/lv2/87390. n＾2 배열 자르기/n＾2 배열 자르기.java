@@ -1,10 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.stream.LongStream;
 
 class Solution {
     public int[] solution(int n, long left, long right) {
-        List<Integer> lst = new ArrayList<>();
-        for (long i = left; i <= right; i++) lst.add((int) Math.max(i / n, i % n) + 1);
-        return lst.stream().mapToInt(i -> i).toArray();
+        return LongStream.rangeClosed(left, right).mapToInt(l -> (int) Math.max(l / n, l % n) + 1).toArray();
     }
 }
