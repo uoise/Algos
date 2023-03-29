@@ -35,19 +35,27 @@ class Solution {
         for (int i = 0; i < siz; i++) arr[i] = new Igp(i, genres[i], plays[i]);
         Map<String, List<Igp>> map = Arrays.stream(arr).collect(Collectors.groupingBy(Igp::getGenre));
         Igp[] igps = new Igp[map.size()];
+
         int idx = 0;
         for (Map.Entry<String, List<Igp>> el : map.entrySet()) {
+
             int sum = 0;
-            for (Igp t : el.getValue()) sum += t.plays;
+            for (Igp t : el.getValue()) { sum += t.plays;        }
+
             igps[idx++] = new Igp(0, el.getKey(), sum);
         }
 
         Arrays.sort(igps, Comparator.comparingInt(Igp::getPlays).reversed());
 
         for (Igp t : igps) {
+                    System.out.println(t.genre);
             List<Igp> el = map.get(t.genre);
             el.sort(Comparator.comparingInt(Igp::getPlays).reversed());
-            for (int i = 0; i < 2 && i < el.size(); i++) answer.add(el.get(i).idx);
+            
+            for (int i = 0; i < 2 && i < el.size(); i++) { 
+                answer.add(el.get(i).idx);
+
+            }
         }
         return answer.stream().mapToInt(i -> i).toArray();
     }
