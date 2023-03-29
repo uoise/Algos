@@ -6,7 +6,7 @@ class Solution {
     public int solution(int[] scoville, int K) {
         int answer = 0;
         for (int s : scoville) pq.add(s);
-        while (pq.size() > 0) {
+        while (!pq.isEmpty()) {
             int sum = pq.poll();
             if (sum >= K) return answer;
             if (pq.isEmpty()) return -1;
