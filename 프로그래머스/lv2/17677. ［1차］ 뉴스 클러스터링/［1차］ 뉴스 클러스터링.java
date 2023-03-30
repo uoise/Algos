@@ -16,17 +16,14 @@ class Solution {
         }
         return cnt;
     }
-    
+
     public int solution(String str1, String str2) {
         int max, dup = 0;
         max = prs(str1, 0);
-        System.out.println();
         max += prs(str2, 1);
-        System.out.println();
         for (int[][] vv : ctr)
             for (int[] v : vv)
                 dup += Math.min(v[0], v[1]);
-
 
         return max == 0 ? 65536 : (int) (dup * 65536D / (max - dup));
     }
