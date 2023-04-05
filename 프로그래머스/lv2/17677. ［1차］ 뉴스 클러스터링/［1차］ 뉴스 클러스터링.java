@@ -21,9 +21,10 @@ class Solution {
         int max, dup = 0;
         max = prs(str1, 0);
         max += prs(str2, 1);
-        for (int[][] vv : ctr)
-            for (int[] v : vv)
-                dup += Math.min(v[0], v[1]);
+        for(int i = 0; i < ctr.length; i++) 
+            for(int j = 0; j < ctr[i].length; j++)
+                dup += Math.min(ctr[i][j][0], ctr[i][j][1]);
+        
 
         return max == 0 ? 65536 : (int) (dup * 65536D / (max - dup));
     }
