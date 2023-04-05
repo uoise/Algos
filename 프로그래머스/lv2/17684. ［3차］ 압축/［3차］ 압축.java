@@ -4,7 +4,6 @@ class Solution {
 
     public int[] solution(String msg) {
         Queue<Integer> answer = new ArrayDeque<>();
-
         Map<String, Integer> map = new HashMap<>();
         for (int i = 0; i < 26; i++) map.put(String.valueOf(Character.valueOf((char) ('A' + i))), i + 1);
         int idx = 0;
@@ -18,9 +17,9 @@ class Solution {
                     map.put(tgt, map.size() + 1);
                     answer.add(map.get(msg.substring(idx, --len)));
                 }
-                if (len == msg.length()) {
-                    answer.add(map.get(msg.substring(idx)));
-                }
+            }
+            if (len == msg.length()) {
+                answer.add(map.get(msg.substring(idx)));
             }
             idx = len;
         }
