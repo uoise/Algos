@@ -31,7 +31,7 @@ class Solution {
         String[] answer = new String[q.size()];
         for (int i = 0; i < answer.length; i++) {
             Sb cur = q.poll();
-            answer[i] = map.get(cur.s) + (cur.b ? "님이 들어왔습니다." : "님이 나갔습니다.");
+            answer[i] = String.format("%s%s", map.get(cur.s), (cur.b ? "님이 들어왔습니다." : "님이 나갔습니다."));
         }
         return answer;
     }
