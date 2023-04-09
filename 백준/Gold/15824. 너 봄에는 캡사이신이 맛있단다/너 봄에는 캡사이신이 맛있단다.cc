@@ -7,9 +7,9 @@ constexpr ll MX = 1e9 + 7;
 int n, v[300000];
 ll pow(int e) {
   if (!e) return 1;
-  if (e & 1) return 2L * pow(e - 1) % MX;
+  if (e == 1) return 2;
   ll r = pow(e / 2) % MX;
-  return r * r % MX;
+  return r * r * (e & 1 ? 2L : 1L) % MX;
 }
 
 int main() {
