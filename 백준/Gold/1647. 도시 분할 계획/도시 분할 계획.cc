@@ -9,6 +9,7 @@ struct Cuv {
 
 std::priority_queue<Cuv> pq;
 int n, m, r, vv[100001];
+
 int fnd(const int& x) {
   if (x == vv[x]) return x;
   return vv[x] = fnd(vv[x]);
@@ -29,13 +30,14 @@ int main() {
   }
 
   for (int i = 1; i <= n; i++) vv[i] = i;
+
   int tgt = n - 1;
   m = 0;
   while (tgt && !pq.empty()) {
     c = pq.top().c, u = pq.top().u, v = pq.top().v;
     pq.pop();
     if (!mks(u, v)) continue;
-    r += c;
+    --tgt, r += c;
     m = c > m ? c : m;
   }
   printf("%d", r - m);
