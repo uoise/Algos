@@ -11,7 +11,7 @@ class Solution {
         x = fnd(x, arr);
         y = fnd(y, arr);
         if (x == y) return false;
-        arr[Math.max(x, y)] = Math.min(x, y);
+        arr[y] = x;
         return true;
     }
 
@@ -19,8 +19,8 @@ class Solution {
         int[] group = new int[n];
         for (int i = 0; i < n; i++) group[i] = i;
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < n; j++)
-                if (i != j && computers[i][j] == 1) union(i, j, group);
+            for (int j = i + 1; j < n; j++)
+                if (computers[i][j] == 1) union(i, j, group);
         Set<Integer> answer = new HashSet<>();
         for (int g : group) answer.add(fnd(g, group));
         return answer.size();
