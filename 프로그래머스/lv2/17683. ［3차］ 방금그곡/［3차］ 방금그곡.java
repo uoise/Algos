@@ -1,15 +1,12 @@
 class Solution {
-
     static String clc(String s) {
         for (char c = 'A'; c <= 'G'; c++) s = s.replace(c + "#", String.valueOf(c).toLowerCase());
         return s;
-
     }
 
-    static int tim(String s) {
+    static int tim(final String s) {
         return Integer.parseInt(s.substring(0, 2)) * 60 + Integer.parseInt(s.substring(3));
     }
-
 
     public String solution(String m, String[] musicinfos) {
         String answer = "(None)";
