@@ -2,7 +2,7 @@ class Solution {
     boolean[][] vv;
     int siz, answer = 0;
 
-    void dfs(final int cur, final int shp, final int wlf, boolean[] bv) {
+    void dfs(final int cur, final int shp, final int wlf, final boolean[] bv) {
         if (shp <= wlf) return;
         boolean[] nv = bv.clone();
         nv[cur] = false;
