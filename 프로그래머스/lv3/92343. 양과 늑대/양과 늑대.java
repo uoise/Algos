@@ -3,9 +3,9 @@ class Solution {
     int siz, answer = 0;
 
     void dfs(final int cur, final int shp, final int wlf, boolean[] bv) {
+        if (shp <= wlf) return;
         boolean[] nv = bv.clone();
         nv[cur] = false;
-        if (shp <= wlf) return;
         answer = Math.max(answer, shp);
         for (int i = 0; i < vv.length; i++) {
             if (cur == i || !vv[cur][i]) continue;
