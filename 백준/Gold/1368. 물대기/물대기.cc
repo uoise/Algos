@@ -31,7 +31,7 @@ int main() {
   for (int y = 1; y <= n; y++) {
     for (int x = 1; x <= n; x++) {
       scanf("%d", &v);
-      if (y == x) continue;
+      if (y >= x) continue;
       q.push({v, y, x});
     }
   }
