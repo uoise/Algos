@@ -20,6 +20,7 @@ int main() {
   while (!q.empty()) {
     x = q.front();
     q.pop();
+    if (dv[x] > k) continue;
     for (const int& nxt : bv[x]) {
       if (dv[nxt]) continue;
       dv[nxt] = dv[x] + 1;
