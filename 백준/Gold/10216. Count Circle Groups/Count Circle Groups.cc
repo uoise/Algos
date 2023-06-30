@@ -29,8 +29,7 @@ int sol() {
     gv[i] = i;
   }
   for (int i = 0; i < n; i++)
-    for (int j = i + 1; j < n; j++)
-      if (fnd(i) != fnd(j)) mks(i, j);
+    for (int j = i + 1; j < n; j++) mks(i, j);
   int r = 0;
   for (int i = 0; i < n; i++)
     if (!bv[fnd(i)]) ++r, bv[fnd(i)] = 1;
