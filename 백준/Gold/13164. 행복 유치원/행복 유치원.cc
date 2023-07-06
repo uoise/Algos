@@ -13,9 +13,8 @@ int main() {
     r += x - l;
   }
 
-  --k;
-  while (!q.empty()) {
-    if (k) r -= q.top(), --k;
+  while (!q.empty() && --k) {
+    r -= q.top();
     q.pop();
   }
 
