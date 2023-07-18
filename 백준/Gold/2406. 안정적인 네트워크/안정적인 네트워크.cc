@@ -45,13 +45,14 @@ void sol() {
   for (int i = 1; i <= n; i++)
     for (int j = 1; j <= n; j++) {
       scanf("%d", &m);
+      if (i == 1 || j == 1 || i <= j) continue;
       pq.push({m, i, j});
     }
 
   while (!vld() && !pq.empty()) {
     m = pq.top().c, s = pq.top().u, e = pq.top().v;
     pq.pop();
-    if (s == 1 || e == 1 || !mks(s, e)) continue;
+    if (!mks(s, e)) continue;
     r += m;
     q.push({s, e});
   }
