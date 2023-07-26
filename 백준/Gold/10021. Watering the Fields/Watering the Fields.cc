@@ -29,7 +29,7 @@ int clc(const int& i, const int& j) {
 int main() {
   scanf("%d %d", &n, &c);
   for (int i = 1; i <= n; i++) {
-    scanf("%lld %lld", &lv[i][0], &lv[i][1]);
+    scanf("%d %d", &lv[i][0], &lv[i][1]);
     gv[i] = i;
   }
 
