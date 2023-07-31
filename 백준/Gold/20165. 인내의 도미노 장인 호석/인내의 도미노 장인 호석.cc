@@ -8,10 +8,9 @@ int n, m, vv[MX][MX];
 bool bv[MX][MX];
 int psh(int y, int x, const int& d) {
   int cnt = 0, lst = 1;
-  while (1) {
+  while (lst) {
     if (!bv[y][x]) lst = std::max(lst, vv[y][x]), ++cnt, bv[y][x] = 1;
-    if (!--lst) break;
-    y += yy[d], x += xx[d];
+    y += yy[d], x += xx[d], --lst;
     if (!y || y > n || !x || x > m) break;
   }
 
