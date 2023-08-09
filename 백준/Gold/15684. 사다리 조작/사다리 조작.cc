@@ -16,15 +16,17 @@ bool chk() {
   return true;
 }
 
-bool clc(const int p, const int d) {
+bool clc(const int& d) {
   if (!d) return chk();
 
-  for (int y = p; y <= h; y++) {
-    for (int x = 1; x < n; x++) {
-      if (v[y][x] || v[y][x - 1] || v[y][x + 1]) continue;
+  for (int x = 1; x < n; x++) {
+    for (int y = 1; y <= h; y++) {
+      if (v[y][x - 1] || v[y][x] || v[y][x + 1]) continue;
       v[y][x] = true;
-      if (clc(y, d - 1)) return true;
+      if (clc(d - 1)) return true;
       v[y][x] = false;
+
+      while (!v[y][x - 1] && !v[y][x + 1]) ++y;
     }
   }
 
@@ -32,7 +34,7 @@ bool clc(const int p, const int d) {
 }
 
 int sol() {
-  for (int i = 0; i <= 3; i++) if (clc(1, i)) return i;
+  for (int i = 0; i < 4; i++) if (clc(i)) return i;
   return -1;
 }
 
