@@ -19,13 +19,12 @@ int main() {
     for (int i = n - 2; i; i--) {
       if (!v[i] || v[i + 1] || !q[i + 1]) continue;
       if (!--q[i + 1]) ++c;
-      v[i + 1] = i == n - 2 ? 0 : v[i];
-      v[i] = 0;
+      v[i + 1] = i != n - 2, v[i] = 0;
     }
     if (!q[0]) continue;
     v[0] = 1;
     if (!--q[0]) ++c;
   }
-  
+
   printf("%d", r);
 }
