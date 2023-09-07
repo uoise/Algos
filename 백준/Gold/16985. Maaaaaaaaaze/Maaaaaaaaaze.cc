@@ -44,6 +44,7 @@ bool mks() {
 }
 
 void rot(const int& d) {
+  if (r == 12) return;
   if (d == 5) {
     if (mks()) bfs();
     return;
@@ -56,6 +57,7 @@ void rot(const int& d) {
 }
 
 void stk(const int& d) {
+  if (r == 12) return;
   if (d == 5) {
     const auto &t = dvvv[0][sv[0]], &b = dvvv[0][sv[4]];
     if (t[0][0] && t[0][4] && t[4][0] && t[4][4]) return;
