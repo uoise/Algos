@@ -34,7 +34,7 @@ int main() {
   }
 
   for (int i = 0; i < n; i++)
-    for (int j = i + 1; j <= n; j++) pq.push({i, j, clc(i, j)});
+    for (int j = i + 1; j < n; j++) pq.push({i, j, clc(i, j)});
 
   --n;
   while (!pq.empty() && n) {
