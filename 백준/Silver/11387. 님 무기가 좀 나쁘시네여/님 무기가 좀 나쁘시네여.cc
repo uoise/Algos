@@ -3,6 +3,7 @@
 
 struct dam {
   int att, str, icc, cdm, ias;
+  dam() { scanf("%d %d %d %d %d", &att, &str, &icc, &cdm, &ias); }
   dam(int att, int str, int icc, int cdm, int ias) {
     this->att = att, this->str = str;
     this->icc = icc, this->cdm = cdm, this->ias = ias;
@@ -20,21 +21,11 @@ struct dam {
 };
 
 int main() {
-  int att, str, icc, cdm, ias;
-  scanf("%d %d %d %d %d", &att, &str, &icc, &cdm, &ias);
-  dam cri = {att, str, icc, cdm, ias};
-
-  scanf("%d %d %d %d %d", &att, &str, &icc, &cdm, &ias);
-  dam pav = {att, str, icc, cdm, ias};
-
-  scanf("%d %d %d %d %d", &att, &str, &icc, &cdm, &ias);
-  dam crw = {att, str, icc, cdm, ias};
-
-  scanf("%d %d %d %d %d", &att, &str, &icc, &cdm, &ias);
-  dam pvw = {att, str, icc, cdm, ias};
-
+  dam cri = dam();
+  dam pav = dam();
+  dam crw = dam();
+  dam pvw = dam();
   dam crn = cri - crw + pvw, pvn = pav - pvw + crw;
-
   printf("%c\n", cri == crn ? '0' : cri < crn ? '+' : '-');
   printf("%c", pav == pvn ? '0' : pav < pvn ? '+' : '-');
 }
