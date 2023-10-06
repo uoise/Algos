@@ -15,16 +15,17 @@ void sol() {
     vv[u].push_back(v);
     ++bv[v];
   }
-
-  for (int i = 1; i <= n; i++)
-    if (!bv[i]) q.push(i);
-
-  while (!q.empty()) {
-    int cur = q.front();
-    q.pop();
-    cout << cur << ' ';
-    for (auto& nxt : vv[cur])
-      if (!--bv[nxt]) q.push(nxt);
+  u = n;
+  while (u--) {
+    for (int i = 1; i <= n; i++)
+      if (!bv[i]) q.push(i);
+    while (!q.empty()) {
+      int cur = q.front();
+      q.pop();
+      cout << cur << ' ';
+      for (const auto& nxt : vv[cur]) bv[nxt]--;
+      bv[cur] = -1;
+    }
   }
 }
 int main() {
