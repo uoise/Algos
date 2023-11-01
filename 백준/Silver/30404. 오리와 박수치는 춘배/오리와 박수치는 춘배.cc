@@ -1,10 +1,10 @@
 #include <cstdio>
-
-int n, k, v[100001], t, r;
+int n, k, v, t, r;
 int main() {
   scanf("%d %d", &n, &k);
-  for (int i = 0; i < n; i++) scanf("%d", &v[i]);
-  for (int i = 0; i < n; i++)
-    if (v[i] > t) t = v[i] + k, ++r;
+  for (int i = 0; i < n; i++) {
+    scanf("%d", &v);
+    if (v > t) t = v + k, ++r;
+  }
   printf("%d", r);
 }
