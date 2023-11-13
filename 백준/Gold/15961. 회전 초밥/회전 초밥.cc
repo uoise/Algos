@@ -1,35 +1,15 @@
 #include <algorithm>
 #include <cstdio>
-#include <unordered_map>
-#include <vector>
 
-std::vector<int> v;
-std::unordered_map<int, int> m;
-int n, d, k, c, r;
-void aoi(int x) {
-  auto f = m.find(x);
-  if (f == m.end())
-    m.insert({x, 1});
-  else
-    f->second++;
-}
-
-void eod(int x) {
-  if (!--m[x]) m.erase(x);
-}
-
+int n, d, k, c, s, r, vv[3000001], iv[3001];
 int main() {
   scanf("%d %d %d %d", &n, &d, &k, &c);
-  for (int i = 0; i < n; i++) {
-    int x;
-    scanf("%d", &x);
-    v.push_back(x);
-  }
-
+  for (int i = 0; i < n; i++) scanf("%d", &vv[i]);
   for (int i = 0; i < n + k; i++) {
-    aoi(v[i % n]);
-    if (i >= k) eod(v[(i - k) % n]);
-    r = std::max(r, (int)(m.find(c) == m.end() ? m.size() + 1 : m.size()));
+    if (!iv[vv[i % n]]++) ++s;
+    if (i < k) continue;
+    if (!--iv[vv[(i - k) % n]]) --s;
+    r = std::max(r, iv[c] ? s : s + 1);
   }
   printf("%d", r);
 }
