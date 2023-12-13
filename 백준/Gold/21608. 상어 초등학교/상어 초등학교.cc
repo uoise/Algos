@@ -1,20 +1,21 @@
+#include <algorithm>
 #include <cstdio>
-#include <queue>
 
 constexpr int yy[] = {1, 0, -1, 0}, xx[] = {0, 1, 0, -1};
 struct yx {
   int y, x, f, e;
   bool operator<(const yx& o) const {
-    if (f != o.f) return f < o.f;
-    if (e != o.e) return e < o.e;
-    if (y != o.y) return y > o.y;
-    return x > o.x;
+    if (f != o.f) return f > o.f;
+    if (e != o.e) return e > o.e;
+    if (y != o.y) return y < o.y;
+    return x < o.x;
   }
 };
 
-std::priority_queue<yx> q;
+yx cv[401];
 int n, fv[401][4], vv[21][21];
 void sol(int c) {
+  int s = 0;
   for (int y = 0; y < n; y++) {
     for (int x = 0; x < n; x++) {
       if (vv[y][x]) continue;
@@ -32,11 +33,11 @@ void sol(int c) {
           break;
         }
       }
-      q.push({y, x, f, e});
+      cv[s++] = {y, x, f, e};
     }
   }
-  vv[q.top().y][q.top().x] = c;
-  while (!q.empty()) q.pop();
+  std::sort(cv, cv + s);
+  vv[cv[0].y][cv[0].x] = c;
 }
 
 int clc(int y, int x) {
