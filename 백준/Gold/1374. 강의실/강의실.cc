@@ -1,22 +1,16 @@
+#include <algorithm>
 #include <cstdio>
 #include <queue>
-
-std::priority_queue<std::pair<int, int>> u;
+std::pair<int, int> v[100001];
 std::priority_queue<int> q;
 int main() {
-  int n, x, s, e;
+  int n, x;
   scanf("%d", &n);
+  for (int i = 0; i < n; i++) scanf("%d %d %d", &x, &v[i].first, &v[i].second);
+  std::sort(v, v + n);
   for (int i = 0; i < n; i++) {
-    scanf("%d %d %d", &x, &s, &e);
-    u.push({-s, -e});
+    if (!q.empty() && -q.top() <= v[i].first) q.pop();
+    q.push(-v[i].second);
   }
-
-  while (!u.empty()) {
-    s = -u.top().first, e = -u.top().second;
-    u.pop();
-    if (!q.empty() && -q.top() <= s) q.pop();
-    q.push(-e);
-  }
-
   printf("%d", q.size());
 }
