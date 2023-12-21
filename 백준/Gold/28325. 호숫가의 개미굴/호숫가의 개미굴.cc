@@ -3,14 +3,21 @@
 
 using ll = long long;
 constexpr ll MX = 25e4 + 1;
-int n;
-ll v[MX][2];
-int main() {
+int n, c[MX];
+ll v[MX], s;
+ll sol() {
   scanf("%d", &n);
-  for (int i = 1; i <= n; i++) scanf("%lld", &v[i][0]);
   for (int i = 1; i <= n; i++) {
-    v[i][0] += std::max(v[(i - 1) % n][0], v[(i - 1) % n][1]);
-    v[i][1] += v[(i - 1) % n][0] + 1;
+    scanf("%lld", &v[i]);
+    s += v[i];
   }
-  printf("%lld", std::max(v[n][0], v[n][1]));
+  if (!s) return n / 2;
+  for (int i = 1, j; i <= n; i++) {
+    if (v[i] || c[i]) continue;
+    for (j = i; j <= n && !v[j]; j++) c[j] = 1;
+    s += (j - i + 1) / 2;
+  }
+  return s;
 }
+
+int main() { printf("%lld", sol()); }
