@@ -1,18 +1,15 @@
 #include <algorithm>
 #include <cstdio>
-#include <cstring>
 
-int n, pv[11];
+int n, pv[11], r = 0x3f3f3f3f;
 bool vv[11][11], bv[11][2];
 void dfs(int c, int p) {
   bv[c][p] = 1;
-  for (int a = 0; a < n; a++)
-    if (vv[c][a] && !bv[a][p]) dfs(a, p);
+  for (int a = 0; a < n; a++) if (vv[c][a] && !bv[a][p]) dfs(a, p);
 }
 
 bool vld(int p) {
-  for (int i = 0; i < n; i++)
-    if (!bv[i][p]) return 0;
+  for (int i = 0; i < n; i++) if (!bv[i][p]) return 0;
   return 1;
 }
 
@@ -29,14 +26,12 @@ bool chk(int b, int e) {
 }
 
 int main() {
+  int c, a;
   scanf("%d", &n);
-  int r = 0x3f3f3f3f;
   for (int i = 0; i < n; i++) scanf("%d", &pv[i]);
   for (int i = 0; i < n; i++) {
-    int c;
     scanf("%d", &c);
     while (c--) {
-      int a;
       scanf("%d", &a);
       vv[i][a - 1] = 1;
     }
@@ -47,10 +42,8 @@ int main() {
     for (int i = 0; i < n; i++) {
       bv[i][0] = v & (1 << i);
       bv[i][1] = !bv[i][0];
-      if (bv[i][1])
-        ls += pv[i], b = i;
-      else
-        rs += pv[i], e = i;
+      if (bv[i][1]) ls += pv[i], b = i;
+      else rs += pv[i], e = i;
     }
     if (chk(b, e)) r = std::min(r, std::abs(ls - rs));
   }
