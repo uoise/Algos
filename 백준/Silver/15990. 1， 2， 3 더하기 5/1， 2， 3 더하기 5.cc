@@ -1,6 +1,6 @@
 #include <cstdio>
 constexpr int MX = 1e5 + 1, R = 1e9 + 9;
-int r[MX][4];
+int r[MX][3];
 int main() {
   r[1][0] = r[2][1] = 1;
   r[3][0] = r[3][1] = r[3][2] = 1;
