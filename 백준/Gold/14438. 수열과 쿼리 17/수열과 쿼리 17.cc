@@ -2,24 +2,24 @@
 #include <cstdio>
 
 int a[100001], v[1 << 21];
-int init(int nod, int beg, int end) {
-  return v[nod] = (beg == end) ? a[beg]
-         : std::min(init(nod * 2, beg, (beg + end) / 2),
-                    init(nod * 2 + 1, (beg + end) / 2 + 1, end));
+int init(int n, int b, int e) {
+  return v[n] = (b == e) ? a[b]
+         : std::min(init(n * 2, b, (b + e) / 2),
+                    init(n * 2 + 1, (b + e) / 2 + 1, e));
 }
 
-int mod(int nod, int beg, int end, int idx, int val) {
-  if (idx < beg || idx > end) return v[nod];
-  return v[nod] = (beg == end) ? val
-         : std::min(mod(nod * 2, beg, (beg + end) / 2, idx, val),
-                    mod(nod * 2 + 1, (beg + end) / 2 + 1, end, idx, val));
+int mod(int n, int b, int e, int i, int x) {
+  if (i < b || i > e) return v[n];
+  return v[n] = (b == e) ? x
+         : std::min(mod(n * 2, b, (b + e) / 2, i, x),
+                    mod(n * 2 + 1, (b + e) / 2 + 1, e, i, x));
 }
 
-int qry(int nod, int beg, int end, int lft, int rht) {
-  if (lft > end || rht < beg) return 1e9 + 1;
-  return (lft <= beg && rht >= end) ? v[nod]
-         : std::min(qry(nod * 2, beg, (beg + end) / 2, lft, rht),
-                    qry(nod * 2 + 1, (beg + end) / 2 + 1, end, lft, rht));
+int qry(int n, int b, int e, int l, int r) {
+  if (l > e || r < b) return 1e9 + 1;
+  return (l <= b && r >= e) ? v[n]
+         : std::min(qry(n * 2, b, (b + e) / 2, l, r),
+                    qry(n * 2 + 1, (b + e) / 2 + 1, e, l, r));
 }
 
 int main() {
