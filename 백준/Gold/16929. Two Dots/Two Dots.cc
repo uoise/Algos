@@ -1,5 +1,4 @@
 #include <cstdio>
-#include <cstring>
 #include <queue>
 constexpr int MX = 51, yy[] = {1, 0, -1, 0}, xx[] = {0, 1, 0, -1};
 std::queue<std::pair<int, int>> q;
@@ -13,15 +12,13 @@ bool bfs(int y, int x) {
     q.pop();
     for (int d = 0; d < 4; d++) {
       int ny = y + yy[d], nx = x + xx[d];
-      if (ny < 0 || ny >= n || nx < 0 || nx >= m) continue;
-      if (cv[ny][nx] != cv[y][x]) continue;
+      if (ny < 0 || ny >= n || nx < 0 || nx >= m || cv[ny][nx] != cv[y][x]) continue;
       if (bv[y][x] + 1 == bv[ny][nx]) return 1;
       if (bv[ny][nx]) continue;
       bv[ny][nx] = bv[y][x] + 1;
       q.push({ny, nx});
     }
   }
-  memset(bv, 0, sizeof bv);
   return 0;
 }
 
