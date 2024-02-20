@@ -15,7 +15,6 @@ struct tp {
     if (mv[ny][nx] == '.') y = ny, x = nx;
     return 0;
   }
-  bool operator==(const tp& a) const { return y == a.y && x == a.x; }
 };
 
 struct fp {
@@ -36,7 +35,7 @@ int sol() {
       auto [a1, a2] = c;
       int cnt = a1.clc(d) + a2.clc(d);
       if (cnt == 1) return c.fnd();
-      if (cnt == 2 || a1 == a2) continue;
+      if (cnt == 2) continue;
       a = {a1, a2};
       if (a.fnd()) continue;
       a.fnd() = c.fnd() + 1;
