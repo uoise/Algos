@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cstdio>
 
 bool ov[10], bv[10], rb;
 char rs[11];
@@ -21,11 +21,10 @@ void btr(int c, bool p) {
 }
 
 int main() {
-  std::cin.tie(0)->sync_with_stdio(0);
-  std::cin >> n;
+  scanf("%d\n", &n);
   char c;
   for (int i = 0; i < n; i++) {
-    std::cin >> c;
+    scanf("%c ", &c);
     ov[i] = c == '>';
   }
 
