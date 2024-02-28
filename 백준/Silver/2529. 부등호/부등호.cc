@@ -3,36 +3,19 @@
 bool ov[10], bv[10], rb;
 char rs[11];
 int n;
-void btr(int c) {
+void btr(int c, bool p) {
   if (c == n + 1) {
     rb = 1;
     printf("%s\n", rs);
     return;
   }
 
-  for (int i = 9; !rb && i >= 0; i--) {
+  for (int i = (p ? 9 : 0); !rb && i != (p ? -1 : 10); i += (p ? -1 : 1)) {
     if (bv[i]) continue;
     if (ov[c - 1] && ((rs[c - 1] - '0') < i)) continue;
     if (!ov[c - 1] && ((rs[c - 1] - '0') > i)) continue;
     bv[i] = 1, rs[c] = '0' + i;
-    btr(c + 1);
-    bv[i] = 0;
-  }
-}
-
-void rtr(int c) {
-  if (c == n + 1) {
-    rb = 1;
-    printf("%s\n", rs);
-    return;
-  }
-
-  for (int i = 0; !rb && i < 10; i++) {
-    if (bv[i]) continue;
-    if (ov[c - 1] && ((rs[c - 1] - '0') < i)) continue;
-    if (!ov[c - 1] && ((rs[c - 1] - '0') > i)) continue;
-    bv[i] = 1, rs[c] = '0' + i;
-    rtr(c + 1);
+    btr(c + 1, p);
     bv[i] = 0;
   }
 }
@@ -46,16 +29,7 @@ int main() {
     ov[i] = c == '>';
   }
 
-  for (int i = 9; !rb && i >= 0; i--) {
-    bv[i] = 1, rs[0] = '0' + i;
-    btr(1);
-    bv[i] = 0;
-  }
-  
+  btr(0, 1);
   rb = 0;
-  for (int i = 0; !rb && i < 10; i++) {
-    bv[i] = 1, rs[0] = '0' + i;
-    rtr(1);
-    bv[i] = 0;
-  }
+  btr(0, 0);
 }
