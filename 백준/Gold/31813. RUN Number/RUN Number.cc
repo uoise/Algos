@@ -56,6 +56,6 @@ int main() {
   while (T--) {
     cin >> n >> k;
     b = 0;
-    btr(n, k);
+    btr(n + 1, k);
   }
 }
