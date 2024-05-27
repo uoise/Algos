@@ -20,12 +20,12 @@ int sol() {
   scanf("%lld %lld", &ex, &ey);
 
   int r = len(ex, ey);
-  for (const auto [x, y] : s) {
+  for (const auto& [x, y] : s) {
     r = min(r, len(ex - x, ey - y) + 2);
     p.insert({ex - x, ey - y});
   }
 
-  for (const auto [x, y] : s)
+  for (const auto& [x, y] : s)
     for (int d = 0; d < 5; d++)
       if (p.count({x + xx[d], y + yy[d]})) r = min(r, d ? 5 : 4);
 
